@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ramo de Flores Amarillas</title>
+    <style>
+        body {
+            background: linear-gradient(#87CEEB, #E0F6FF);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Alinear contenido en la parte inferior */
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Evitar desbordamiento */
+        }
+
+        /* Ventana emergente */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .modal button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background: #4a3520;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .modal button:hover {
+            background: #6b4e3a;
+        }
+
+        /* Ocultar el ramo de flores inicialmente */
+        .bouquet {
+            opacity: 0; /* Inicialmente invisible */
+            transition: opacity 1s ease-in-out; /* Transición suave */
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Alinear flores en la parte inferior */
+        }
+
+        /* Mostrar el ramo de flores con efecto de fundido */
+        .bouquet.visible {
+            opacity: 1; /* Hacerlo visible */
+        }
+
+        /* Contenedor de frases */
+        .phrase-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            opacity: 0; /* Inicialmente invisible */
+            transition: opacity 1s ease-in-out; /* Transición suave */
+        }
+
+        /* Estilos del ramo de flores (corregidos para centrar y alinear en la parte inferior) */
+        .vase {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 140px;
+            background: linear-gradient(45deg, #6b4e3a, #8a6d52);
+            border-radius: 15px 15px 30px 30px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .stem {
+            position: absolute;
+            bottom: 120px;
+            width: 6px;
+            height: 150px;
+            background: linear-gradient(to right, #2d5a27, #3c7a34);
+            border-radius: 5px;
+            transform-origin: bottom;
+            animation: sway 5s ease-in-out infinite alternate;
+            left: 50%; /* Centrar horizontalmente */
+            transform: translateX(-50%); /* Ajustar posición */
+        }
+
+        .stem2 {
+            position: absolute;
+            bottom: 120px;
+            width: 6px;
+            height: 150px;
+            background: linear-gradient(to right, #2d5a27, #3c7a34);
+            border-radius: 5px;
+            transform-origin: bottom;
+            animation: sway 4s ease-in-out infinite alternate;
+            left: 50%; /* Centrar horizontalmente */
+            transform: translateX(-50%); /* Ajustar posición */
+        }
+
+        .stem3 {
+            position: absolute;
+            bottom: 120px;
+            width: 6px;
+            height: 150px;
+            background: linear-gradient(to right, #2d5a27, #3c7a34);
+            border-radius: 5px;
+            transform-origin: bottom;
+            animation: sway 3s ease-in-out infinite alternate;
+            left: 50%; /* Centrar horizontalmente */
+            transform: translateX(-50%); /* Ajustar posición */
+        }
+
+        .stem4 {
+            position: absolute;
+            bottom: 120px;
+            width: 6px;
+            height: 150px;
+            background: linear-gradient(to right, #2d5a27, #3c7a34);
+            border-radius: 5px;
+            transform-origin: bottom;
+            animation: sway 2s ease-in-out infinite alternate;
+            left: 50%; /* Centrar horizontalmente */
+            transform: translateX(-50%); /* Ajustar posición */
+        }
+
+        .flower {
+            position: absolute;
+            top: -40px;
+            left: -10px;
+        }
+
+        .petals {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+
+        .petal {
+            position: absolute;
+            width: 25px;
+            height: 35px;
+            background: linear-gradient(#FFD700, #FFEC8B);
+            border-radius: 50%;
+            transform-origin: bottom center;
+        }
+
+        .center {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(#8B4513, #6b3410);
+            border-radius: 50%;
+            top: 70%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes sway {
+            from {
+                transform: translateX(-50%) rotate(-15deg); /* Ajustar para centrar */
+            }
+            to {
+                transform: translateX(-50%) rotate(15deg); /* Ajustar para centrar */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ventana emergente -->
+    <div class="modal" id="modal">
+        <h2>¿Cómo te sientes hoy?</h2>
+        <button onclick="selectMood('feliz')">Feliz</button>
+        <button onclick="selectMood('triste')">Triste</button>
+    </div>
+
+    <!-- Ramo de flores (oculto inicialmente) -->
+    <div class="bouquet" id="bouquet">
+        <div class="vase"></div>
+        
+        <div class="stem" style="height: 190px;">
+            <div class="flower">
+                <div class="petals">
+                    <div class="petal" style="transform: rotate(0deg);"></div>
+                    <div class="petal" style="transform: rotate(60deg);"></div>
+                    <div class="petal" style="transform: rotate(120deg);"></div>
+                    <div class="petal" style="transform: rotate(180deg);"></div>
+                    <div class="petal" style="transform: rotate(240deg);"></div>
+                    <div class="petal" style="transform: rotate(300deg);"></div>
+                    <div class="center"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stem2" style="height: 160px;">
+            <div class="flower">
+                <div class="petals">
+                    <div class="petal" style="transform: rotate(0deg);"></div>
+                    <div class="petal" style="transform: rotate(60deg);"></div>
+                    <div class="petal" style="transform: rotate(120deg);"></div>
+                    <div class="petal" style="transform: rotate(180deg);"></div>
+                    <div class="petal" style="transform: rotate(240deg);"></div>
+                    <div class="petal" style="transform: rotate(300deg);"></div>
+                    <div class="center"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stem3" style="height: 130px;">
+            <div class="flower">
+                <div class="petals">
+                    <div class="petal" style="transform: rotate(0deg);"></div>
+                    <div class="petal" style="transform: rotate(60deg);"></div>
+                    <div class="petal" style="transform: rotate(120deg);"></div>
+                    <div class="petal" style="transform: rotate(180deg);"></div>
+                    <div class="petal" style="transform: rotate(240deg);"></div>
+                    <div class="petal" style="transform: rotate(300deg);"></div>
+                    <div class="center"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stem4" style="height: 100px;">
+            <div class="flower">
+                <div class="petals">
+                    <div class="petal" style="transform: rotate(0deg);"></div>
+                    <div class="petal" style="transform: rotate(60deg);"></div>
+                    <div class="petal" style="transform: rotate(120deg);"></div>
+                    <div class="petal" style="transform: rotate(180deg);"></div>
+                    <div class="petal" style="transform: rotate(240deg);"></div>
+                    <div class="petal" style="transform: rotate(300deg);"></div>
+                    <div class="center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor de frases -->
+    <div class="phrase-container" id="phrase-container"></div>
+
+    <script>
+        // Frases para "Feliz" y "Triste"
+        const happyPhrases = [
+            '💖 "Me encanta verte feliz, pero lo que más me gusta es saber que una persona tan increíble como tú merece toda esa felicidad y más."',
+            '🌟 "Tu energía ilumina todo a tu alrededor. No solo eres increíble, sino que haces que todo sea mejor con tu presencia."',
+            '😊 "Si la felicidad tuviera un rostro, seguramente se parecería mucho al tuyo. ¡Brillas con luz propia!"',
+            '✨ "Eres una de esas personas que le da color a la vida de los demás, y me siento afortunado de tenerte cerca."',
+            '💫 "Ojalá pudieras verte con mis ojos, porque entonces entenderías lo increíble que eres."',
+            '🔥 "No solo mereces toda la felicidad del mundo, ¡también mereces que nunca se acabe!"',
+            '🥰 "Siempre que sonríes, el mundo se vuelve un lugar mejor. ¡Sigue brillando así!"'
+        ];
+
+        const sadPhrases = [
+            '💙 "No tienes que ser fuerte todo el tiempo. Estoy aquí para ti, en los buenos y malos momentos."',
+            '🤍 "A veces la vida pesa, pero no tienes que cargar con todo sola. Déjame ayudarte a llevar un poco de esa carga."',
+            '✨ "Tu valor no depende de cómo te sientas en este momento. Eres increíble, incluso en tus días difíciles."',
+            '💫 "Hoy puede ser un día gris, pero recuerda que incluso las tormentas más fuertes terminan y el sol vuelve a brillar."',
+            '🥰 "No estás sola. No importa lo que pase, siempre estaré aquí para ti."',
+            '🌿 "Es normal sentirse así a veces, pero quiero que recuerdes que eres fuerte y que esto también pasará. Y mientras pasa, cuentas conmigo."',
+            '🔥 "Incluso cuando no lo ves, sigues brillando. No dejes que este momento te haga olvidar lo increíble que eres."'
+        ];
+
+        let currentPhrases = []; // Almacena las frases actuales
+        let currentIndex = 0; // Índice de la frase actual
+
+        // Función para manejar la selección de estado de ánimo
+        function selectMood(mood) {
+            const modal = document.getElementById('modal');
+            const bouquet = document.getElementById('bouquet');
+            const phraseContainer = document.getElementById('phrase-container');
+
+            // Ocultar la ventana emergente
+            modal.style.display = 'none';
+
+            // Mostrar el ramo de flores con efecto de fundido
+            bouquet.classList.add('visible');
+
+            // Seleccionar las frases según el estado de ánimo
+            currentPhrases = mood === 'feliz' ? happyPhrases : sadPhrases;
+            currentIndex = 0;
+
+            // Mostrar la primera frase
+            showNextPhrase();
+        }
+
+        // Función para mostrar la siguiente frase
+        function showNextPhrase() {
+            const phraseContainer = document.getElementById('phrase-container');
+
+            // Mostrar la frase actual con efecto de fundido
+            phraseContainer.textContent = currentPhrases[currentIndex];
+            phraseContainer.style.opacity = 1;
+
+            // Ocultar la frase después de 5 segundos
+            setTimeout(() => {
+                phraseContainer.style.opacity = 0;
+            }, 5000);
+
+            // Cambiar a la siguiente frase después de 6 segundos (5 segundos de visualización + 1 segundo de fundido)
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % currentPhrases.length; // Reiniciar el índice si llega al final
+                showNextPhrase(); // Mostrar la siguiente frase
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
