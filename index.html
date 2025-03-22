@@ -78,16 +78,16 @@
         /* Contenedor de frases */
         .phrase-container {
             position: fixed;
-            top: 25%; /* Ajustado para mover el texto más arriba */
+            top: 40%; /* Ajustado para mover el texto más arriba */
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            font-size: 2rem; /* Tamaño de fuente más grande */
+            font-size: 3rem; /* Tamaño de fuente más grande */
             color: #333;
             opacity: 0; /* Inicialmente invisible */
             transition: opacity 1s ease-in-out; /* Transición suave */
             width: 90%; /* Ancho relativo */
-            max-width: 600px; /* Ancho máximo */
+            max-width: 800px; /* Ancho máximo */
             z-index: 1; /* Asegurar que las frases estén detrás del ramo */
         }
 
@@ -174,7 +174,7 @@
         }
 
         /* Media Queries para ajustes específicos */
-        @media (max-width: 768px) {
+        @media (max-width: 828px) {
             html {
                 font-size: 18px; /* Tamaño base más grande en móviles */
             }
@@ -215,6 +215,126 @@
 
             .flower {
                 top: -6rem; /* Ajustado para móviles */
+            }
+
+            .petals {
+                width: 3.5rem; /* Flores más grandes en móviles */
+                height: 3.5rem;
+            }
+
+            .petal {
+                width: 1.75rem;
+                height: 2.5rem;
+            }
+
+            .center {
+                width: 0.9rem;
+                height: 0.9rem;
+            }
+        }
+
+        /* Media Queries para ajustes específicos */
+        @media (max-width: 1366px) {
+            html {
+                font-size: 14px; /* Tamaño base más grande en móviles */
+            }
+
+            .modal h2 {
+                font-size: 1.8rem; /* Tamaño de fuente más grande en móviles */
+            }
+
+            .modal button {
+                padding: 0.8rem 1.5rem; /* Botones más grandes */
+                font-size: 1.2rem;
+            }
+
+            .phrase-container {
+                font-size: 2rem; /* Tamaño de fuente más grande en móviles */
+                top: 35%; /* Ajustado para móviles */
+            }
+
+            .stem, .stem2, .stem3, .stem4 {
+                width: 0.25rem; /* Tallos más delgados en móviles */
+            }
+
+            .stem {
+                height: 12rem; /* Ajustado para móviles */
+            }
+
+            .stem2 {
+                height: 10rem; /* Ajustado para móviles */
+            }
+
+            .stem3 {
+                height: 8rem; /* Ajustado para móviles */
+            }
+
+            .stem4 {
+                height: 6rem; /* Ajustado para móviles */
+            }
+
+            .flower {
+                top: -4rem; /* Ajustado para móviles */
+            }
+
+            .petals {
+                width: 3.5rem; /* Flores más grandes en móviles */
+                height: 3.5rem;
+            }
+
+            .petal {
+                width: 1.75rem;
+                height: 2.5rem;
+            }
+
+            .center {
+                width: 0.9rem;
+                height: 0.9rem;
+            }
+        }
+
+                /* Media Queries para ajustes específicos */
+                @media (max-width: 1440px) {
+            html {
+                font-size: 20px; /* Tamaño base más grande en móviles */
+            }
+
+            .modal h2 {
+                font-size: 1.8rem; /* Tamaño de fuente más grande en móviles */
+            }
+
+            .modal button {
+                padding: 0.8rem 1.5rem; /* Botones más grandes */
+                font-size: 1.2rem;
+            }
+
+            .phrase-container {
+                font-size: 2rem; /* Tamaño de fuente más grande en móviles */
+                top: 35%; /* Ajustado para móviles */
+            }
+
+            .stem, .stem2, .stem3, .stem4 {
+                width: 0.25rem; /* Tallos más delgados en móviles */
+            }
+
+            .stem {
+                height: 12rem; /* Ajustado para móviles */
+            }
+
+            .stem2 {
+                height: 10rem; /* Ajustado para móviles */
+            }
+
+            .stem3 {
+                height: 8rem; /* Ajustado para móviles */
+            }
+
+            .stem4 {
+                height: 6rem; /* Ajustado para móviles */
+            }
+
+            .flower {
+                top: -4rem; /* Ajustado para móviles */
             }
 
             .petals {
