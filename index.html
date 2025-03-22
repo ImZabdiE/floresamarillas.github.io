@@ -3,6 +3,11 @@
 <head>
     <title>Ramo de Flores Amarillas</title>
     <style>
+        /* Tamaño base en rem */
+        html {
+            font-size: 16px; /* Tamaño base para rem */
+        }
+
         body {
             background: linear-gradient(#87CEEB, #E0F6FF);
             min-height: 100vh;
@@ -26,22 +31,24 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
             z-index: 1000;
+            width: 90%; /* Ancho relativo */
+            max-width: 400px; /* Ancho máximo */
         }
 
         .modal h2 {
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 1.5rem; /* Tamaño relativo */
             color: #333;
         }
 
         .modal button {
-            padding: 10px 20px;
-            margin: 0 10px;
+            padding: 0.5rem 1rem; /* Tamaño relativo */
+            margin: 0 0.5rem;
             border: none;
             border-radius: 5px;
             background: #4a3520;
             color: white;
-            font-size: 16px;
+            font-size: 1rem; /* Tamaño relativo */
             cursor: pointer;
             transition: background 0.3s ease;
         }
@@ -60,6 +67,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-end; /* Alinear flores en la parte inferior */
+            z-index: 10; /* Asegurar que el ramo esté encima de las frases */
         }
 
         /* Mostrar el ramo de flores con efecto de fundido */
@@ -74,107 +82,113 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            font-size: 24px;
+            font-size: 2rem; /* Tamaño de fuente más grande */
             color: #333;
             opacity: 0; /* Inicialmente invisible */
             transition: opacity 1s ease-in-out; /* Transición suave */
+            width: 90%; /* Ancho relativo */
+            max-width: 600px; /* Ancho máximo */
+            z-index: 1; /* Asegurar que las frases estén detrás del ramo */
         }
 
-        /* Estilos del ramo de flores (corregidos para centrar y alinear en la parte inferior) */
-        .vase {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 140px;
-            background: linear-gradient(45deg, #6b4e3a, #8a6d52);
-            border-radius: 15px 15px 30px 30px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-        }
 
         .stem {
             position: absolute;
-            bottom: 120px;
-            width: 6px;
-            height: 150px;
+            bottom: 0; /* Conectar al florero */
+            width: 0.3rem; /* Ancho relativo */
+            height: 15rem; /* Alto relativo */
             background: linear-gradient(to right, #2d5a27, #3c7a34);
             border-radius: 5px;
             transform-origin: bottom;
             animation: sway 5s ease-in-out infinite alternate;
             left: 50%; /* Centrar horizontalmente */
             transform: translateX(-50%); /* Ajustar posición */
+            max-height: 300px; /* Tamaño máximo */
+            z-index: 10; /* Asegurar que los tallos estén encima del florero */
         }
 
         .stem2 {
             position: absolute;
-            bottom: 120px;
-            width: 6px;
-            height: 150px;
+            bottom: 0;
+            width: 0.3rem;
+            height: 13rem;
             background: linear-gradient(to right, #2d5a27, #3c7a34);
             border-radius: 5px;
             transform-origin: bottom;
             animation: sway 4s ease-in-out infinite alternate;
-            left: 50%; /* Centrar horizontalmente */
-            transform: translateX(-50%); /* Ajustar posición */
+            left: 50%;
+            transform: translateX(-50%);
+            max-height: 260px;
+            z-index: 10;
         }
 
         .stem3 {
             position: absolute;
-            bottom: 120px;
-            width: 6px;
-            height: 150px;
+            bottom: 0;
+            width: 0.3rem;
+            height: 11rem;
             background: linear-gradient(to right, #2d5a27, #3c7a34);
             border-radius: 5px;
             transform-origin: bottom;
             animation: sway 3s ease-in-out infinite alternate;
-            left: 50%; /* Centrar horizontalmente */
-            transform: translateX(-50%); /* Ajustar posición */
+            left: 50%;
+            transform: translateX(-50%);
+            max-height: 220px;
+            z-index: 10;
         }
 
         .stem4 {
             position: absolute;
-            bottom: 120px;
-            width: 6px;
-            height: 150px;
+            bottom: 0;
+            width: 0.3rem;
+            height: 9rem;
             background: linear-gradient(to right, #2d5a27, #3c7a34);
             border-radius: 5px;
             transform-origin: bottom;
             animation: sway 2s ease-in-out infinite alternate;
-            left: 50%; /* Centrar horizontalmente */
-            transform: translateX(-50%); /* Ajustar posición */
+            left: 50%;
+            transform: translateX(-50%);
+            max-height: 180px;
+            z-index: 10;
         }
 
         .flower {
             position: absolute;
-            top: -40px;
-            left: -10px;
+            top: -3rem; /* Subir las flores un poco más */
+            left: -1.5rem; /* Posición relativa */
+            z-index: 15; /* Asegurar que las flores estén encima de los tallos */
         }
 
         .petals {
             position: relative;
-            width: 50px;
-            height: 50px;
+            width: 4rem; /* Ancho relativo */
+            height: 4rem; /* Alto relativo */
+            max-width: 80px; /* Tamaño máximo */
+            max-height: 80px; /* Tamaño máximo */
         }
 
         .petal {
             position: absolute;
-            width: 25px;
-            height: 35px;
+            width: 2rem; /* Ancho relativo */
+            height: 3rem; /* Alto relativo */
             background: linear-gradient(#FFD700, #FFEC8B);
             border-radius: 50%;
             transform-origin: bottom center;
+            max-width: 40px; /* Tamaño máximo */
+            max-height: 60px; /* Tamaño máximo */
         }
 
         .center {
             position: absolute;
-            width: 15px;
-            height: 15px;
+            width: 1rem; /* Ancho relativo */
+            height: 1rem; /* Alto relativo */
             background: linear-gradient(#8B4513, #6b3410);
             border-radius: 50%;
             top: 70%;
             left: 30%;
             transform: translate(-50%, -50%);
+            max-width: 20px; /* Tamaño máximo */
+            max-height: 20px; /* Tamaño máximo */
         }
 
         @keyframes sway {
@@ -183,6 +197,74 @@
             }
             to {
                 transform: translateX(-50%) rotate(15deg); /* Ajustar para centrar */
+            }
+        }
+
+        /* Media Queries para ajustes específicos */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px; /* Tamaño base más pequeño en móviles */
+            }
+
+            .modal h2 {
+                font-size: 1.2rem; /* Tamaño de fuente más pequeño en móviles */
+            }
+
+            .modal button {
+                padding: 0.4rem 0.8rem; /* Botones más pequeños */
+                font-size: 0.9rem;
+            }
+
+            .phrase-container {
+                font-size: 1.5rem; /* Tamaño de fuente más grande en móviles */
+            }
+
+            .stem, .stem2, .stem3, .stem4 {
+                width: 0.25rem; /* Tallos más delgados en móviles */
+            }
+
+            .petals {
+                width: 3rem; /* Flores más pequeñas en móviles */
+                height: 3rem;
+            }
+
+            .petal {
+                width: 1.5rem;
+                height: 2.25rem;
+            }
+
+            .center {
+                width: 0.75rem;
+                height: 0.75rem;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            html {
+                font-size: 18px; /* Tamaño base más grande en pantallas 1080p */
+            }
+
+            .phrase-container {
+                font-size: 2.5rem; /* Tamaño de fuente más grande en pantallas grandes */
+            }
+
+            .stem, .stem2, .stem3, .stem4 {
+                width: 0.35rem; /* Tallos más gruesos en pantallas grandes */
+            }
+
+            .petals {
+                width: 5rem; /* Flores más grandes en pantallas grandes */
+                height: 5rem;
+            }
+
+            .petal {
+                width: 2.5rem;
+                height: 3.75rem;
+            }
+
+            .center {
+                width: 1.25rem;
+                height: 1.25rem;
             }
         }
     </style>
@@ -199,7 +281,7 @@
     <div class="bouquet" id="bouquet">
         <div class="vase"></div>
         
-        <div class="stem" style="height: 190px;">
+        <div class="stem" style="height: 15rem;">
             <div class="flower">
                 <div class="petals">
                     <div class="petal" style="transform: rotate(0deg);"></div>
@@ -213,7 +295,7 @@
             </div>
         </div>
         
-        <div class="stem2" style="height: 160px;">
+        <div class="stem2" style="height: 13rem;">
             <div class="flower">
                 <div class="petals">
                     <div class="petal" style="transform: rotate(0deg);"></div>
@@ -227,7 +309,7 @@
             </div>
         </div>
 
-        <div class="stem3" style="height: 130px;">
+        <div class="stem3" style="height: 11rem;">
             <div class="flower">
                 <div class="petals">
                     <div class="petal" style="transform: rotate(0deg);"></div>
@@ -241,7 +323,7 @@
             </div>
         </div>
 
-        <div class="stem4" style="height: 100px;">
+        <div class="stem4" style="height: 9rem;">
             <div class="flower">
                 <div class="petals">
                     <div class="petal" style="transform: rotate(0deg);"></div>
