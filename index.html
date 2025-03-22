@@ -91,70 +91,43 @@
             z-index: 1; /* Asegurar que las frases estén detrás del ramo */
         }
 
-
-        .stem {
+        /* Estilos de los tallos */
+        .stem, .stem2, .stem3, .stem4 {
             position: absolute;
-            bottom: 0; /* Conectar al florero */
+            bottom: 0;
             width: 0.3rem; /* Ancho relativo */
-            height: 15rem; /* Alto relativo */
             background: linear-gradient(to right, #2d5a27, #3c7a34);
             border-radius: 5px;
             transform-origin: bottom;
             animation: sway 5s ease-in-out infinite alternate;
-            left: 50%; /* Centrar horizontalmente */
-            transform: translateX(-50%); /* Ajustar posición */
-            max-height: 300px; /* Tamaño máximo */
-            z-index: 10; /* Asegurar que los tallos estén encima del florero */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10; /* Asegurar que los tallos estén encima del fondo */
+        }
+
+        .stem {
+            height: 18rem; /* Ajustado para mover las flores más arriba */
         }
 
         .stem2 {
-            position: absolute;
-            bottom: 0;
-            width: 0.3rem;
-            height: 13rem;
-            background: linear-gradient(to right, #2d5a27, #3c7a34);
-            border-radius: 5px;
-            transform-origin: bottom;
-            animation: sway 4s ease-in-out infinite alternate;
-            left: 50%;
-            transform: translateX(-50%);
-            max-height: 260px;
-            z-index: 10;
+            height: 16rem; /* Ajustado para mover las flores más arriba */
+            animation-duration: 4s;
         }
 
         .stem3 {
-            position: absolute;
-            bottom: 0;
-            width: 0.3rem;
-            height: 11rem;
-            background: linear-gradient(to right, #2d5a27, #3c7a34);
-            border-radius: 5px;
-            transform-origin: bottom;
-            animation: sway 3s ease-in-out infinite alternate;
-            left: 50%;
-            transform: translateX(-50%);
-            max-height: 220px;
-            z-index: 10;
+            height: 14rem; /* Ajustado para mover las flores más arriba */
+            animation-duration: 3s;
         }
 
         .stem4 {
-            position: absolute;
-            bottom: 0;
-            width: 0.3rem;
-            height: 9rem;
-            background: linear-gradient(to right, #2d5a27, #3c7a34);
-            border-radius: 5px;
-            transform-origin: bottom;
-            animation: sway 2s ease-in-out infinite alternate;
-            left: 50%;
-            transform: translateX(-50%);
-            max-height: 180px;
-            z-index: 10;
+            height: 12rem; /* Ajustado para mover las flores más arriba */
+            animation-duration: 2s;
         }
 
+        /* Estilos de las flores */
         .flower {
             position: absolute;
-            top: -3rem; /* Subir las flores un poco más */
+            top: -5rem; /* Ajustado para mover las flores más arriba */
             left: -1.5rem; /* Posición relativa */
             z-index: 15; /* Asegurar que las flores estén encima de los tallos */
         }
@@ -203,68 +176,59 @@
         /* Media Queries para ajustes específicos */
         @media (max-width: 768px) {
             html {
-                font-size: 14px; /* Tamaño base más pequeño en móviles */
+                font-size: 18px; /* Tamaño base más grande en móviles */
             }
 
             .modal h2 {
-                font-size: 1.2rem; /* Tamaño de fuente más pequeño en móviles */
+                font-size: 1.8rem; /* Tamaño de fuente más grande en móviles */
             }
 
             .modal button {
-                padding: 0.4rem 0.8rem; /* Botones más pequeños */
-                font-size: 0.9rem;
+                padding: 0.8rem 1.5rem; /* Botones más grandes */
+                font-size: 1.2rem;
             }
 
             .phrase-container {
-                font-size: 1.5rem; /* Tamaño de fuente más grande en móviles */
+                font-size: 2rem; /* Tamaño de fuente más grande en móviles */
             }
 
             .stem, .stem2, .stem3, .stem4 {
                 width: 0.25rem; /* Tallos más delgados en móviles */
             }
 
-            .petals {
-                width: 3rem; /* Flores más pequeñas en móviles */
-                height: 3rem;
+            .stem {
+                height: 20rem; /* Ajustado para móviles */
             }
 
-            .petal {
-                width: 1.5rem;
-                height: 2.25rem;
+            .stem2 {
+                height: 18rem; /* Ajustado para móviles */
             }
 
-            .center {
-                width: 0.75rem;
-                height: 0.75rem;
-            }
-        }
-
-        @media (min-width: 1920px) {
-            html {
-                font-size: 18px; /* Tamaño base más grande en pantallas 1080p */
+            .stem3 {
+                height: 16rem; /* Ajustado para móviles */
             }
 
-            .phrase-container {
-                font-size: 2.5rem; /* Tamaño de fuente más grande en pantallas grandes */
+            .stem4 {
+                height: 14rem; /* Ajustado para móviles */
             }
 
-            .stem, .stem2, .stem3, .stem4 {
-                width: 0.35rem; /* Tallos más gruesos en pantallas grandes */
+            .flower {
+                top: -6rem; /* Ajustado para móviles */
             }
 
             .petals {
-                width: 5rem; /* Flores más grandes en pantallas grandes */
-                height: 5rem;
+                width: 3.5rem; /* Flores más grandes en móviles */
+                height: 3.5rem;
             }
 
             .petal {
-                width: 2.5rem;
-                height: 3.75rem;
+                width: 1.75rem;
+                height: 2.5rem;
             }
 
             .center {
-                width: 1.25rem;
-                height: 1.25rem;
+                width: 0.9rem;
+                height: 0.9rem;
             }
         }
     </style>
@@ -279,9 +243,7 @@
 
     <!-- Ramo de flores (oculto inicialmente) -->
     <div class="bouquet" id="bouquet">
-        <div class="vase"></div>
-        
-        <div class="stem" style="height: 15rem;">
+        <div class="stem" style="height: 18rem;">
             <div class="flower">
                 <div class="petals">
                     <div class="petal" style="transform: rotate(0deg);"></div>
@@ -295,7 +257,7 @@
             </div>
         </div>
         
-        <div class="stem2" style="height: 13rem;">
+        <div class="stem2" style="height: 16rem;">
             <div class="flower">
                 <div class="petals">
                     <div class="petal" style="transform: rotate(0deg);"></div>
@@ -309,7 +271,7 @@
             </div>
         </div>
 
-        <div class="stem3" style="height: 11rem;">
+        <div class="stem3" style="height: 14rem;">
             <div class="flower">
                 <div class="petals">
                     <div class="petal" style="transform: rotate(0deg);"></div>
@@ -323,7 +285,7 @@
             </div>
         </div>
 
-        <div class="stem4" style="height: 9rem;">
+        <div class="stem4" style="height: 12rem;">
             <div class="flower">
                 <div class="petals">
                     <div class="petal" style="transform: rotate(0deg);"></div>
