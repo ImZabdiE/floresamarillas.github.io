@@ -1,58 +1,100 @@
-/* Tamaño base en rem */
+/* --- ESTILOS BASE (MOBILE FIRST) --- */
+
+/* Usamos variables para colores y tamaños para facilitar el mantenimiento */
+:root {
+    --cielo-claro: #87CEEB;
+    --cielo-horizonte: #E0F6FF;
+    --tallo-oscuro: #2d5a27;
+    --tallo-claro: #3c7a34;
+    --petalo-claro: #FFD700;
+    --petalo-oscuro: #FFEC8B;
+    --centro-flor: #8B4513;
+    --centro-flor-sombra: #6b3410;
+    --texto-principal: #333;
+    --boton-fondo: #4a3520;
+    --boton-hover: #6b4e3a;
+}
+
 html {
-    font-size: 16px; /* Tamaño base para rem */
+    font-size: 16px; /* Tamaño base para rem, 1rem = 16px */
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 
 body {
-    background: linear-gradient(#87CEEB, #E0F6FF);
+    background: linear-gradient(var(--cielo-claro), var(--cielo-horizonte));
     min-height: 100vh;
     margin: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Alinear contenido en la parte inferior */
-    font-family: Arial, sans-serif;
-    overflow: hidden; /* Evitar desbordamiento */
+    align-items: flex-end;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
 }
 
-/* Ventana emergente */
+/* --- MODAL INICIAL --- */
 .modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    padding: 20px;
+    padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
     z-index: 1000;
-    width: 90%; /* Ancho relativo */
-    max-width: 400px; /* Ancho máximo */
+    width: 90%;
+    max-width: 350px;
 }
 
 .modal h2 {
-    margin-bottom: 20px;
-    font-size: 1.5rem; /* Tamaño relativo */
-    color: #333;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    color: var(--texto-principal);
 }
 
 .modal button {
-    padding: 0.5rem 1rem; /* Tamaño relativo */
-    margin: 0 0.5rem;
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.25rem;
     border: none;
-    border-radius: 5px;
-    background: #4a3520;
+    border-radius: 8px;
+    background: var(--boton-fondo);
     color: white;
-    font-size: 1rem; /* Tamaño relativo */
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .modal button:hover {
-    background: #6b4e3a;
+    background: var(--boton-hover);
+    transform: translateY(-2px);
 }
 
-/* Ramo de flores */
+/* --- CONTENEDOR DE FRASES --- */
+.phrase-container {
+    position: fixed;
+    top: 20%; /* Posición fija en la parte superior */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 1.5rem; /* Tamaño para móvil */
+    font-weight: bold;
+    color: var(--texto-principal);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    width: 90%;
+    max-width: 500px;
+    z-index: 1;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+/* --- RAMO DE FLORES --- */
 .bouquet {
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -69,129 +111,132 @@ body {
     opacity: 1;
 }
 
-/* Contenedor de frases (AJUSTADO) */
-.phrase-container {
-    position: fixed;
-    top: 25%; /* Posición vertical en la parte superior */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 2.5rem; /* Tamaño de fuente base */
-    color: #333;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    width: 90%;
-    max-width: 800px;
-    z-index: 1;
-}
-
-/* Estilos de los tallos */
+/* Tallos */
 .stem, .stem2, .stem3, .stem4 {
     position: absolute;
     bottom: 0;
-    width: 0.3rem;
-    background: linear-gradient(to right, #2d5a27, #3c7a34);
+    width: 0.25rem; /* Ancho para móvil */
+    background: linear-gradient(to right, var(--tallo-oscuro), var(--tallo-claro));
     border-radius: 5px;
     transform-origin: bottom;
     animation: sway 5s ease-in-out infinite alternate;
     left: 50%;
-    transform: translateX(-50%);
     z-index: 10;
 }
 
-.stem { height: 18rem; }
-.stem2 { height: 16rem; animation-duration: 4s; }
-.stem3 { height: 14rem; animation-duration: 3s; }
-.stem4 { height: 12rem; animation-duration: 2s; }
+/* Tamaños para móvil */
+.stem { height: 14rem; transform: translateX(-60%); }
+.stem2 { height: 12rem; transform: translateX(-15%); animation-duration: 4s; }
+.stem3 { height: 13rem; transform: translateX(30%); animation-duration: 6s; }
+.stem4 { height: 11rem; transform: translateX(70%); animation-duration: 3.5s; }
 
-/* Estilos de las flores */
+@keyframes sway {
+    from { transform: rotate(-8deg); }
+    to { transform: rotate(8deg); }
+}
+
+/* Flores */
 .flower {
     position: absolute;
-    top: -5rem;
-    left: -1.5rem;
+    top: -3.5rem; /* Posición para móvil */
+    left: -1.375rem;
     z-index: 15;
 }
 
 .petals {
     position: relative;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem; /* Tamaño para móvil */
+    height: 3rem;
 }
 
 .petal {
     position: absolute;
-    width: 2rem;
-    height: 3rem;
-    background: linear-gradient(#FFD700, #FFEC8B);
+    width: 1.5rem;
+    height: 2.25rem;
+    background: linear-gradient(var(--petalo-claro), var(--petalo-oscuro));
     border-radius: 50%;
     transform-origin: bottom center;
 }
 
+.petal:nth-child(1) { transform: rotate(0deg); }
+.petal:nth-child(2) { transform: rotate(60deg); }
+.petal:nth-child(3) { transform: rotate(120deg); }
+.petal:nth-child(4) { transform: rotate(180deg); }
+.petal:nth-child(5) { transform: rotate(240deg); }
+.petal:nth-child(6) { transform: rotate(300deg); }
+
 .center {
     position: absolute;
-    width: 1rem;
-    height: 1rem;
-    background: linear-gradient(#8B4513, #6b3410);
+    width: 0.75rem;
+    height: 0.75rem;
+    background: linear-gradient(var(--centro-flor), var(--centro-flor-sombra));
     border-radius: 50%;
-    top: 70%;
-    left: 30%;
+    top: 75%;
+    left: 25%;
     transform: translate(-50%, -50%);
 }
 
-@keyframes sway {
-    from { transform: translateX(-50%) rotate(-15deg); }
-    to { transform: translateX(-50%) rotate(15deg); }
-}
-
-/* === Media Queries para Responsividad (AJUSTADAS) === */
-
-@media (max-width: 828px) {
-    html {
-        font-size: 14px;
+/* --- AJUSTES PARA TABLETS --- */
+@media (min-width: 768px) {
+    .phrase-container {
+        font-size: 2.25rem; /* Fuente más grande */
+        max-width: 700px;
     }
 
-    .phrase-container {
-        font-size: 2rem; /* Reducir tamaño de fuente en móviles */
-        /* Ya no se necesita ajustar 'top' aquí */
+    .stem, .stem2, .stem3, .stem4 {
+        width: 0.3rem; /* Tallos más gruesos */
     }
 
     .stem { height: 16rem; }
     .stem2 { height: 14rem; }
-    .stem3 { height: 12rem; }
-    .stem4 { height: 10rem; }
+    .stem3 { height: 15rem; }
+    .stem4 { height: 13rem; }
 
-    .flower { top: -4rem; }
-    .petals { width: 3.5rem; height: 3.5rem; }
-    .petal { width: 1.75rem; height: 2.5rem; }
+    .flower {
+        top: -4.5rem; /* Flores más arriba */
+        left: -1.6rem;
+    }
+    .petals {
+        width: 3.5rem; /* Flores más grandes */
+        height: 3.5rem;
+    }
+    .petal {
+        width: 1.75rem;
+        height: 2.5rem;
+    }
+    .center {
+        width: 1rem;
+        height: 1rem;
+    }
 }
 
-@media (max-width: 600px) {
-    html {
-        font-size: 12px;
-    }
-
+/* --- AJUSTES PARA ESCRITORIO --- */
+@media (min-width: 1024px) {
     .phrase-container {
-        font-size: 1.8rem; /* Reducir más la fuente para móviles pequeños */
+        font-size: 2.75rem; /* Fuente aún más grande */
+        max-width: 800px;
+        top: 25%; /* Un poco más abajo en pantallas grandes */
     }
 
-    .stem { height: 14rem; }
-    .stem2 { height: 12rem; }
-    .stem3 { height: 10rem; }
-    .stem4 { height: 8rem; }
-
-    .flower { top: -3.5rem; }
-    .petals { width: 3rem; height: 3rem; }
-    .petal { width: 1.5rem; height: 2rem; }
-}
-
-@media (max-width: 480px) {
-    .phrase-container {
-        font-size: 1.6rem; /* Ajuste final para móviles muy pequeños */
-        width: 95%; /* Asegurar que no toque los bordes */
+    .stem, .stem2, .stem3, .stem4 {
+        width: 0.35rem; /* Tallos más gruesos */
     }
 
-    .stem { height: 12rem; }
-    .stem2 { height: 10rem; }
-    .stem3 { height: 8rem; }
-    .stem4 { height: 6rem; }
+    .stem { height: 18rem; }
+    .stem2 { height: 16rem; }
+    .stem3 { height: 17rem; }
+    .stem4 { height: 15rem; }
+
+    .flower {
+        top: -5rem; /* Flores más arriba */
+        left: -1.575rem;
+    }
+    .petals {
+        width: 4rem; /* Flores de tamaño original */
+        height: 4rem;
+    }
+    .petal {
+        width: 2rem;
+        height: 3rem;
+    }
 }
